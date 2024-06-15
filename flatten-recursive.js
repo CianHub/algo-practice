@@ -24,6 +24,13 @@ function flatten(arr, newArr = []) {
   if (arr.length === 0 || typeof arr !== "object") return newArr;
   // if (typeof arr[0] === 'number') newArr.push(arr[0])
   if (typeof arr[0] === "number") newArr.push(arr[0]);
+  // if (typeof arr[0] === 'object') return flatten(arr[0], newArr);
+  /*
+  if (typeof arr[0] === "object")
+    for (let el of arr[0]) {
+      typeof el === "object" ? flatten(el, newArr) : newArr.push(el);
+    }
+*/
   if (typeof arr[0] === "object") flatten(arr[0], newArr);
   return flatten(arr.slice(1), newArr);
 }
