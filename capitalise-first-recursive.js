@@ -18,7 +18,7 @@ function capitalizeFirst(arr) {
 
   */
   // base case -> arr.length === 0 return arr
-  if (arr.length === 0) return arr;
+  if (arr.length === 1) return [arr[0][0].toUpperCase() + arr[0].substr(1)];
   arr[0] = arr[0][0].toUpperCase() + arr[0].slice(1);
   return [arr[0], ...capitalizeFirst(arr.slice(1))];
 }

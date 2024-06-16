@@ -2,9 +2,7 @@ function collectStrings(obj) {
   const strArr = [];
 
   function helper(obj) {
-    const keys = Object.keys(obj);
-
-    for (const key of keys) {
+    for (const key in obj) {
       if (typeof obj[key] === "string") strArr.push(obj[key]);
       if (typeof obj[key] === "object") helper(obj[key]);
     }

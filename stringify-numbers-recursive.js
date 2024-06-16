@@ -7,20 +7,16 @@ and not modify the original. Keep the original object unchanged.
 */
 
 function stringifyNumbers(obj) {
-  const objClone = JSON.parse(JSON.stringify(obj));
+  const objClone = {};
 
-  function helper(obj) {
-    const keys = Object.keys(obj);
-
-    for (const key of keys) {
-      if (typeof obj[key] === "number") obj[key] = `${obj[key]}`;
-      if (typeof obj[key] === "object") helper(obj[key]);
-    }
-
-    return obj;
+  for (let key in obj) {
+    if (typeof obj[key] === "number") objClone[key] = `${obj[key]}`;
+    else if (typeof obj[key] === "object" && !Array.isArray(obj[key]))
+      objClone[key] = stringifyNumbers(obj[key]);
+    else objClone[key] = obj[key];
   }
 
-  return helper(objClone);
+  return objClone;
 }
 
 let obj = {

@@ -5,7 +5,7 @@ Given an array of words, return a new array containing each word capitalized.
 
 function capitaliseWords(arr) {
   // base case = arr.length === 0 return arr
-  if (arr.length === 0) return arr;
+  if (arr.length === 1) return [arr[0].toUpperCase()];
   // arr[0] = arr[0].toUpperCase()
   arr[0] = arr[0].toUpperCase();
   // return [arr[0], ...capitalizeWords(arr.slice(1))]
