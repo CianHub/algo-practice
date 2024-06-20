@@ -5,6 +5,7 @@ function swap(idx1, idx2, arr) {
 }
 
 function bubbleSort(arr) {
+  // good candidate for when data is almost sorted
   // starting at the end loop through each el
   // by the end of each i iteration, arr[i] will be sorted
   for (let i = arr.length; i >= 0; i--) {
