@@ -7,19 +7,14 @@ function swap(idx1, idx2, arr) {
 function selectionSort(arr) {
   for (let i = 0; i < arr.length; i++) {
     let minIdx = i;
-
     let noSwaps = true;
 
-    for (let j = i; j < arr.length; j++) {
-      if (arr[j] < arr[minIdx]) {
-        minIdx = j;
-      }
+    while (noSwaps) {
+      for (let j = i; j < arr.length; j++)
+        minIdx = arr[j] < arr[minIdx] ? j : minIdx;
+
+      minIdx !== i ? swap(i, minIdx, arr) : (noSwaps = false);
     }
-
-    if (minIdx !== i) swap(i, minIdx, arr);
-    noSwaps = false;
-
-    if (noSwaps) break;
   }
 
   return arr;
