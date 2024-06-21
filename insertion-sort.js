@@ -1,15 +1,15 @@
-function swap(idx1, idx2, arr) {
-  const temp = arr[idx1];
-  arr[idx1] = arr[idx2];
-  arr[idx2] = temp;
-}
-
 function insertionSort(arr) {
-  if (arr.length < 2) return arr;
+  for (let i = 1; i < arr.length; i++) {
+    let key = arr[i];
+    let j = i - 1;
 
-  for (let i = 1; i < arr.length; i++)
-    for (let j = 0; j <= i; j++) if (arr[i] < arr[j]) swap(i, j, arr);
+    while (j >= 0 && arr[j] > key) {
+      arr[j + 1] = arr[j];
+      j--;
+    }
 
+    arr[j + 1] = key;
+  }
   return arr;
 }
 
