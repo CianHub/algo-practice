@@ -11,7 +11,7 @@ function frequencyCounter(arr1, arr2) {
   for (const val of arr2) store[val] = 1;
 
   for (const val of arr1) {
-    if (store[val * val]) store[val * val] = 0;
+    if (store[val * val]) store[val * val]--;
     else {
       return false;
     }
