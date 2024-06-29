@@ -44,8 +44,24 @@ function isIsomorphic(s, t) {
   return true;
 }
 
-console.log(isIsomorphic("egg", "add")); //true
+function isIsomorphic2(s, t) {
+  if (s.length !== t.length) return false;
+
+  const hashmap = {};
+
+  for (let i = 0; i < s.length; i++) {
+    if (!hashmap["s" + s[i]]) hashmap["s" + s[i]] = i + 1;
+    if (!hashmap["t" + t[i]]) hashmap["t" + t[i]] = i + 1;
+  }
+
+  for (let i = 0; i < t.length; i++)
+    if (hashmap["t" + t[i + 1]] !== hashmap["s" + s[i + 1]]) return false;
+
+  return true;
+}
+
+console.log(isIsomorphic2("egg", "add")); //true
 console.log(isIsomorphic("foo", "bar")); //false
 console.log(isIsomorphic("paper", "title")); //true
 console.log(isIsomorphic("bbbaaaba", "aaabbbba")); //false
-console.log(isIsomorphic("badc", "baba")); // false
+console.log(isIsomorphic2("badc", "baba")); // false
