@@ -46,7 +46,12 @@ function wordPattern(pattern, s) {
 
     // set hashmap[pattern[i]] = s[i] if it doesnt exist
     if (!hashmapPattern["p" + char]) hashmapPattern["p" + char] = word;
+    else if (hashmapPattern["p" + char] && hashmapPattern["p" + char] !== word)
+      return false;
+
     if (!hashmapS["s" + word]) hashmapS["s" + word] = char;
+    else if (hashmapS["s" + word] && hashmapS["s" + word] !== char)
+      return false;
   }
 
   // loop through pattern with index
@@ -54,6 +59,12 @@ function wordPattern(pattern, s) {
     //    if hashmap[pattern[i]] !== s[i] return false
     const char = pattern[i];
     const word = sArr[i];
+
+    if (
+      hashmapPattern["p" + char] === undefined ||
+      hashmapS["s" + word] === undefined
+    )
+      return false;
 
     if (hashmapPattern["p" + char] !== word || hashmapS["s" + word] !== char)
       return false;
