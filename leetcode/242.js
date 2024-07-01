@@ -26,12 +26,18 @@ function isAnagram(s, t) {
   let ht = {};
 
   for (let i = 0; i < s.length; i++) {
-    hs[s[i]] = (hs[s[i]] || 0) + 1;
-    ht[t[i]] = (ht[t[i]] || 0) + 1;
+    hs[s.charCodeAt(i)] = (hs[s.charCodeAt(i)] || 0) + 1;
+    ht[t.charCodeAt(i)] = (ht[t.charCodeAt(i)] || 0) + 1;
   }
 
   // loop through s and check each value in t hashmap to make sure it exists
-  for (let c of s) if (!ht[c] || !hs[c] || ht[c] !== hs[c]) return false;
+  for (let c of s)
+    if (
+      !ht[c.charCodeAt(0)] ||
+      !hs[c.charCodeAt(0)] ||
+      ht[c.charCodeAt(0)] !== hs[c.charCodeAt(0)]
+    )
+      return false;
 
   return true;
 }
@@ -45,5 +51,5 @@ function isAnagram2(s, t) {
   return sArr.toString() === tArr.toString();
 }
 
-console.log(isAnagram2("anagram", "margana")); // true
-console.log(isAnagram2("rat", "car")); // false
+console.log(isAnagram("anagram", "margana")); // true
+console.log(isAnagram("rat", "car")); // false
