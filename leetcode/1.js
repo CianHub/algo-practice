@@ -40,9 +40,10 @@ function twoSum(nums, target) {
   // loop through nums
   for (let i = 0; i < nums.length; i++) {
     //    let remainder = sum - nums[i]
+    let remainder = target - nums[i];
     //     if (hashmap[remainder] !== undefined) return [i, hashmap[remainder]]
-    if (h[target - nums[i]] !== undefined && h[target - nums[i]] !== i)
-      return [i, h[target - nums[i]]];
+    if (h[remainder] !== undefined && h[remainder] !== i)
+      return [i, h[remainder]];
   }
 }
 
