@@ -36,15 +36,15 @@ function twoSum(nums, target) {
   // create hashmap
   const h = {};
   //loop through nums add each el to hashmap with index as value
-  for (let i = 0; i < nums.length; i++) h[nums[i]] = i;
+  //for (let i = 0; i < nums.length; i++)
   // loop through nums
   for (let i = 0; i < nums.length; i++) {
-    //    let remainder = sum - nums[i]
     let remainder = target - nums[i];
-    //     if (hashmap[remainder] !== undefined) return [i, hashmap[remainder]]
-    if (h[remainder] !== undefined && h[remainder] !== i)
-      return [i, h[remainder]];
+    if (h[remainder] !== undefined) return [i, h[remainder]];
+    h[nums[i]] = i;
   }
+
+  return null;
 }
 
 console.log(twoSum([2, 7, 11, 15], 9)); // [0, 1]
