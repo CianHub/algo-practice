@@ -36,5 +36,14 @@ function isAnagram(s, t) {
   return true;
 }
 
-console.log(isAnagram("anagram", "margana")); // true
-console.log(isAnagram("rat", "car")); // false
+function isAnagram2(s, t) {
+  if (s.length !== t.length) return false;
+
+  const sArr = s.split("").sort();
+  const tArr = t.split("").sort();
+
+  return sArr.toString() === tArr.toString();
+}
+
+console.log(isAnagram2("anagram", "margana")); // true
+console.log(isAnagram2("rat", "car")); // false
