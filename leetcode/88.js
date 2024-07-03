@@ -65,8 +65,9 @@ function merge(nums1, m, nums2, n) {
       m++;
       // move to the next el in nums2
       p2++;
-    } else if (nums1[p1] === 0 && p1 >= m) {
-      // if its a padding 0
+    }
+    // if its a padding 0
+    else if (nums1[p1] === 0 && p1 >= m) {
       // just replace it
       nums1[p1] = nums2[p2];
       // move both pointers along
