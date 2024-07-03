@@ -32,7 +32,7 @@ function groupAnagrams(strs) {
   const results = [];
   const hashmap = {};
   for (let str of strs) {
-    const sortedStr = str.split("").sort();
+    const sortedStr = str.split("").sort().join("");
 
     if (hashmap[sortedStr]) {
       results[hashmap[sortedStr] - 1].push(str);
@@ -45,9 +45,29 @@ function groupAnagrams(strs) {
   return results;
 }
 
+function groupAnagrams2(strs) {
+  // short circuit: strs.length === 0 return [strs];
+  if (strs.length === 0) return [strs];
+  const hashmap = new Map();
+  for (let str of strs) {
+    const sortedStr = Array.from(str).sort().join("");
+
+    if (hashmap.has(sortedStr)) hashmap.get(sortedStr).push(str);
+    else hashmap.set(sortedStr, [str]);
+  }
+  return [...hashmap.values()];
+}
+
 console.log(groupAnagrams(["eat", "tea", "tan", "ate", "nat", "bat"]));
 //[["bat"],["nat","tan"],["ate","eat","tea"]]
 console.log(groupAnagrams([""]));
 // [[""]]
 console.log(groupAnagrams(["a"]));
+//[["a"]]
+
+console.log(groupAnagrams2(["eat", "tea", "tan", "ate", "nat", "bat"]));
+//[["bat"],["nat","tan"],["ate","eat","tea"]]
+console.log(groupAnagrams2([""]));
+// [[""]]
+console.log(groupAnagrams2(["a"]));
 //[["a"]]
