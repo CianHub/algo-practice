@@ -41,6 +41,10 @@ function strStr(haystack, needle) {
   return -1;
 }
 
+function strStr2(haystack, needle) {
+  return haystack.indexOf(needle);
+}
+
 console.log(strStr("sadbutsad", "sad"));
 // 0
 // "sad" occurs at index 0 and 6. The first occurrence is at index 0, so we return 0.
@@ -48,4 +52,13 @@ console.log(strStr("leetcode", "leeto"));
 // -1
 // "leeto" did not occur in "leetcode", so we return -1.
 console.log(strStr("mississippi", "issip"));
+// 4
+
+console.log(strStr2("sadbutsad", "sad"));
+// 0
+// "sad" occurs at index 0 and 6. The first occurrence is at index 0, so we return 0.
+console.log(strStr2("leetcode", "leeto"));
+// -1
+// "leeto" did not occur in "leetcode", so we return -1.
+console.log(strStr2("mississippi", "issip"));
 // 4
