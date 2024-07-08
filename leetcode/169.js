@@ -37,7 +37,46 @@ function majorityElement(nums) {
   }
 }
 
+function majorityElement2(nums) {
+  return nums.sort()[Math.floor(nums.length / 2)];
+}
+
+function majorityElement3(nums) {
+  let majorityElementRec = (lo, hi) => {
+    if (lo === hi) return nums[lo];
+
+    let mid = Math.floor((hi - lo) / 2) + lo;
+    let left = majorityElementRec(lo, mid);
+    let right = majorityElementRec(mid + 1, hi);
+
+    if (left === right) {
+      return left;
+    }
+
+    let leftCount = 0;
+    let rightCount = 0;
+    for (let i = lo; i <= hi; i++) {
+      if (nums[i] === left) {
+        leftCount++;
+      }
+      if (nums[i] == right) {
+        rightCount++;
+      }
+    }
+
+    return leftCount > rightCount ? left : right;
+  };
+
+  return majorityElementRec(0, nums.length - 1);
+}
+
 console.log(majorityElement([3, 2, 3]));
 // 3
 console.log(majorityElement([2, 2, 1, 1, 1, 2, 2]));
 // 2
+console.log(majorityElement2([3, 2, 3]));
+// 3
+console.log(majorityElement2([2, 2, 1, 1, 1, 2, 2]));
+// 2
+console.log(majorityElement2([(-1, 1, 1, 1, 2, 1)]));
+// 1
