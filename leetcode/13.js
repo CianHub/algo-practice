@@ -38,10 +38,7 @@ Given a roman numeral, convert it to an integer.
 */
 
 function romanToInt(s) {
-  //short circuit: if !s
-  if (!s) return 0;
-
-  const map = {
+  let map = {
     I: 1,
     V: 5,
     X: 10,
@@ -54,12 +51,16 @@ function romanToInt(s) {
   if (map[s]) return map[s];
 
   let num = 0;
+  let i = 0;
 
-  for (let i = 0; i < s.length; i++) {
-    let n = s[i];
-
-    if (map[n] < map[s[i + 1]]) num -= map[n];
-    else num += map[n];
+  while (i < s.length) {
+    if (i + 1 < s.length && map[s[i]] < map[s[i + 1]]) {
+      num += map[s[i + 1]] - map[s[i]];
+      i += 2;
+    } else {
+      num += map[s[i]];
+      i += 1;
+    }
   }
 
   return num;
