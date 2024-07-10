@@ -21,48 +21,30 @@ Given an integer, convert it to a Roman numeral.
 */
 
 function intToRoman(num) {
-  let hashmap = {
-    1: "I",
-    2: "II",
-    3: "III",
-    4: "IV",
-    5: "V",
-    6: "VI",
-    7: "VII",
-    8: "VIII",
-    9: "IX",
-    10: "X",
-    40: "XL",
-    50: "L",
-    90: "XC",
-    100: "C",
-    400: "CD",
-    500: "D",
-    900: "CM",
-    1000: "M",
-  };
-
-  if (hashmap[num]) return hashmap[num];
+  const values = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+  const symbols = [
+    "M",
+    "CM",
+    "D",
+    "CD",
+    "C",
+    "XC",
+    "L",
+    "XL",
+    "X",
+    "IX",
+    "V",
+    "IV",
+    "I",
+  ];
 
   let numeral = "";
-  let hashmapKeys = Object.keys(hashmap);
 
-  while (num !== 0) {
-    let currentVal = 9;
-
-    if (hashmap[num]) currentVal = num;
-    else {
-      // start at 9 as anything < 10 will be irrelevent
-      for (let i = 9; i < hashmapKeys.length; i++) {
-        let hashmapVal = Number(hashmapKeys[i]);
-
-        if (hashmapVal <= num) currentVal = hashmapVal;
-        else break;
-      }
+  for (let i = 0; i < values.length && num > 0; i++) {
+    while (values[i] <= num) {
+      num -= values[i];
+      numeral += symbols[i];
     }
-
-    numeral = numeral + hashmap[currentVal];
-    num -= currentVal;
   }
 
   return numeral;
