@@ -44,42 +44,25 @@ function intToRoman(num) {
 
   if (hashmap[num]) return hashmap[num];
 
-  let numArr = String(num).split("");
   let numeral = "";
   let hashmapKeys = Object.keys(hashmap);
 
-  for (let i = 0; i < numArr.length; i++) {
-    // pad digits
-    let remainingDigits = numArr.length - 1 - i;
-    let paddedVal = numArr[i];
+  while (num !== 0) {
+    let currentVal = 9;
 
-    while (remainingDigits > 0) {
-      paddedVal += "0";
-      remainingDigits--;
-    }
+    if (hashmap[num]) currentVal = num;
+    else {
+      // start at 9 as anything < 10 will be irrelevent
+      for (let i = 9; i < hashmapKeys.length; i++) {
+        let hashmapVal = Number(hashmapKeys[i]);
 
-    paddedVal = Number(paddedVal);
-
-    // subtract the largest numeral available from hashmap
-    while (paddedVal !== 0) {
-      let currentVal = 9;
-
-      if (hashmap[paddedVal]) currentVal = paddedVal;
-      else {
-        // start at 9 as anything < 10 will be irrelevent
-        for (let i = 9; i < hashmapKeys.length; i++) {
-          //  find largest value less than or equal to paddedVal
-          let hashmapVal = Number(hashmapKeys[i]);
-
-          if (hashmapVal <= paddedVal) currentVal = hashmapVal;
-          // anything larger than paddedValue is irrelevent
-          else break;
-        }
+        if (hashmapVal <= num) currentVal = hashmapVal;
+        else break;
       }
-
-      numeral = numeral + hashmap[currentVal];
-      paddedVal -= currentVal;
     }
+
+    numeral = numeral + hashmap[currentVal];
+    num -= currentVal;
   }
 
   return numeral;
