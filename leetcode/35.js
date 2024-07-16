@@ -54,8 +54,6 @@ function searchInsert2(nums, target) {
   let pivot;
   let end = nums.length - 1;
 
-  // pivot should end up either at target
-  // the closest value that is still less than target
   while (start <= end) {
     pivot = Math.floor((start + end) / 2);
     if (nums[pivot] === target) return pivot;
