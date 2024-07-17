@@ -27,5 +27,32 @@ function longestCommonPrefix(strs) {
   return prefix;
 }
 
-console.log(longestCommonPrefix(["flower", "flow", "flight"])); //"fl"
-console.log(longestCommonPrefix(["dog", "racecar", "car"])); //''
+function checkForPrefix(str, prefix) {
+  let count = 0;
+  while (count < prefix.length) {
+    if (prefix[count] !== str[count]) return 0;
+    count++;
+  }
+  return 1;
+}
+
+function longestCommonPrefix2(strs) {
+  if (strs.length === 1) return strs[0];
+  let prefix = strs[0];
+
+  let hash = {};
+
+  while (prefix.length > 0) {
+    for (let i = 1; i < strs.length; i++)
+      hash[prefix] = (hash[prefix] || 0) + checkForPrefix(strs[i], prefix);
+
+    if (hash[prefix] === strs.length - 1) return prefix;
+    else prefix = prefix.substring(0, prefix.length - 1);
+  }
+
+  return "";
+}
+
+//console.log(longestCommonPrefix2(["flower", "flow", "flight"])); //"fl"
+//console.log(longestCommonPrefix2(["dog", "racecar", "car"])); //''
+console.log(longestCommonPrefix2(["a"])); //'a'
