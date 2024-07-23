@@ -1,4 +1,4 @@
-function frequencyInsertionSort(nums) {
+function freqInsertionSort(nums) {
   let hashmap = {};
 
   for (let i = 0; i < nums.length; i++) {
@@ -29,9 +29,38 @@ function frequencyInsertionSort(nums) {
 function freqSelectionSort(nums) {
   let hashmap = {};
 
+  // Step 1: Create a hashmap to count the frequency of each number
   for (let i = 0; i < nums.length; i++) {
     hashmap[nums[i]] = (hashmap[nums[i]] || 0) + 1;
   }
+
+  // Step 2: Implement selection sort based on frequency and value
+  for (let i = 0; i < nums.length; i++) {
+    // Find the index of the minimum element in the remaining unsorted part
+    let minIndex = i;
+
+    for (let j = i + 1; j < nums.length; j++) {
+      let currentValFreq = hashmap[nums[minIndex]];
+      let nextValFreq = hashmap[nums[j]];
+
+      // Compare based on frequency (increasing order)
+      // If frequencies are the same, compare based on value (decreasing order)
+      if (
+        currentValFreq > nextValFreq ||
+        (currentValFreq === nextValFreq && nums[minIndex] < nums[j])
+      ) {
+        minIndex = j;
+      }
+    }
+
+    // Swap the found minimum element with the first element of the unsorted part
+    if (minIndex !== i) {
+      let temp = nums[i];
+      nums[i] = nums[minIndex];
+      nums[minIndex] = temp;
+    }
+  }
+
   return nums;
 }
 
@@ -72,7 +101,7 @@ function freqBubbleSort(nums) {
   return nums;
 }
 
-//console.log(frequencyInsertionSort([2, 3, 1, 3, 2])); //[1,3,3,2,2]
-//console.log(freqSelectionSort([2, 3, 1, 3, 2])); //[1,3,3,2,2]
+console.log(freqInsertionSort([2, 3, 1, 3, 2])); //[1,3,3,2,2]
+console.log(freqSelectionSort([2, 3, 1, 3, 2])); //[1,3,3,2,2]
 console.log(freqBubbleSort([-1, 1, -6, 4, 5, -6, 1, 4, 1])); //[1,3,3,2,2]
 //[5,-1,4,4,-6,-6,1,1,1]...
