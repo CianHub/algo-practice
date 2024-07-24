@@ -4,25 +4,29 @@ function mergeSortedArrays(arr1, arr2) {
   let counter1 = 0;
   let counter2 = 0;
 
-  while (counter1 < arr1.length || counter2 < arr2.length) {
-    let currentArr1Val = arr1[counter1];
-    let currentArr2Val = arr2[counter2];
+  while (counter1 < arr1.length && counter2 < arr2.length) {
+    currentArr1Val = arr1[counter1];
+    currentArr2Val = arr2[counter2];
 
-    if (currentArr1Val !== undefined && currentArr2Val !== undefined) {
-      if (currentArr1Val <= currentArr2Val) {
-        mergedArr.push(currentArr1Val);
-        counter1++;
-      } else if (currentArr1Val > currentArr2Val) {
-        mergedArr.push(currentArr2Val);
-        counter2++;
-      }
-    } else if (!currentArr1Val) {
-      mergedArr = [...mergedArr, ...arr2.slice(counter2)];
-      counter2 = arr2.length;
-    } else {
-      mergedArr = [...mergedArr, ...arr1.slice(counter2)];
-      counter1 = arr1.length;
+    if (currentArr1Val <= currentArr2Val) {
+      mergedArr.push(currentArr1Val);
+      counter1++;
     }
+
+    if (currentArr1Val > currentArr2Val) {
+      mergedArr.push(currentArr2Val);
+      counter2++;
+    }
+  }
+
+  while (counter1 < arr1.length) {
+    mergedArr.push(arr1[counter1]);
+    counter1++;
+  }
+
+  while (counter2 < arr2.length) {
+    mergedArr.push(arr2[counter2]);
+    counter2++;
   }
 
   return mergedArr;
