@@ -1,12 +1,22 @@
 function insertionSort(arr) {
   for (let i = 1; i < arr.length; i++) {
-    for (let j = 0; j < i; j++) {
-      if (arr[i] < arr[j]) {
-        let temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-      }
+    let currentVal = arr[i];
+
+    console.log("currentVal", currentVal);
+
+    let j = i - 1;
+
+    while (j >= 0 && arr[j] > currentVal) {
+      arr[j + 1] = arr[j];
+      j--;
+
+      console.log(arr);
     }
+
+    console.log("j + 1: ", j + 1);
+    console.log("currentVal", currentVal);
+
+    arr[j + 1] = currentVal;
   }
 
   return arr;
