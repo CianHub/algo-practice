@@ -17,11 +17,11 @@ function mergeSortedArrays(arr1, arr2) {
         counter2++;
       }
     } else if (!currentArr1Val) {
-      mergedArr.push(currentArr2Val);
-      counter2++;
+      mergedArr = [...mergedArr, ...arr2.slice(counter2)];
+      counter2 = arr2.length;
     } else {
-      mergedArr.push(currentArr1Val);
-      counter1++;
+      mergedArr = [...mergedArr, ...arr1.slice(counter2)];
+      counter1 = arr1.length;
     }
   }
 
