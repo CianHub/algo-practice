@@ -155,9 +155,9 @@ function freqMergeSort(nums) {
   return mergeSort(nums);
 }
 
-/*console.log(freqInsertionSort([2, 3, 1, 3, 2])); //[1,3,3,2,2]
+console.log(freqInsertionSort([2, 3, 1, 3, 2])); //[1,3,3,2,2]
 console.log(freqSelectionSort([2, 3, 1, 3, 2])); //[1,3,3,2,2]
 console.log(freqBubbleSort([-1, 1, -6, 4, 5, -6, 1, 4, 1])); //[1,3,3,2,2]
-//[5,-1,4,4,-6,-6,1,1,1]...*/
+//[5,-1,4,4,-6,-6,1,1,1]...
 console.log(freqMergeSort([-1, 1, -6, 4, 5, -6, 1, 4, 1])); //[1,3,3,2,2]
 //[5,-1,4,4,-6,-6,1,1,1]...
