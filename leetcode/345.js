@@ -13,27 +13,18 @@ function reverseVowels(s) {
   let j = s.length - 1;
 
   while (i < j) {
-    let startChar = splitS[i].toLowerCase();
-    let endChar = splitS[j].toLowerCase();
+    while (!vowels[splitS[i].toLowerCase()] && i < j) i++;
+    while (!vowels[splitS[j].toLowerCase()] && i < j) j--;
 
-    if (vowels[startChar] && vowels[endChar]) {
-      let temp = splitS[i];
-      splitS[i] = splitS[j];
-      splitS[j] = temp;
-      i++;
-      j--;
-    } else if (vowels[startChar] && !vowels[endChar]) {
-      j--;
-    } else if (!vowels[startChar] && vowels[endChar]) {
-      i++;
-    } else {
-      i++;
-      j--;
-    }
+    let temp = splitS[i];
+    splitS[i] = splitS[j];
+    splitS[j] = temp;
+    i++;
+    j--;
   }
 
   return splitS.join("");
 }
 
 console.log(reverseVowels("aA")); // Aa
-//console.log(reverseVowels("leetcode")); //leotcede
+console.log(reverseVowels("leetcode")); //leotcede
