@@ -1,7 +1,6 @@
 function pivot(arr, startIdx = 0, endIdx = arr.length - 1) {
   let pivot = arr[startIdx];
   let pivotIdx = startIdx;
-  let originalPivotIdx = startIdx;
 
   for (let i = startIdx; i < endIdx + 1; i++) {
     if (arr[i] < pivot) {
@@ -10,10 +9,7 @@ function pivot(arr, startIdx = 0, endIdx = arr.length - 1) {
     }
   }
 
-  [[arr[originalPivotIdx]], arr[pivotIdx]] = [
-    [arr[pivotIdx]],
-    arr[originalPivotIdx],
-  ];
+  [[arr[start]], arr[pivotIdx]] = [[arr[pivotIdx]], arr[start]];
 
   return pivot;
 }
