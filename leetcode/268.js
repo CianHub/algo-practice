@@ -83,6 +83,18 @@ function missingNumberSet(nums) {
   }
 }
 
+function missingNumberSimple(nums) {
+  let numsSum = 0;
+  let rangeSum = 0;
+
+  for (let i = 0; i < nums.length + 1; i++) {
+    if (nums[i] !== undefined) numsSum += nums[i];
+    rangeSum += i;
+  }
+
+  return rangeSum - numsSum;
+}
+
 console.log(missingNumberQuickSort([3, 0, 1])); //2
 console.log(missingNumberQuickSort([0, 1])); //2
 console.log(missingNumberQuickSort([9, 6, 4, 2, 3, 5, 7, 0, 1])); //8
@@ -94,3 +106,7 @@ console.log(missingNumberHashmap([9, 6, 4, 2, 3, 5, 7, 0, 1])); //8
 console.log(missingNumberSet([3, 0, 1])); //2
 console.log(missingNumberSet([0, 1])); //2
 console.log(missingNumberSet([9, 6, 4, 2, 3, 5, 7, 0, 1])); //8
+
+console.log(missingNumberSimple([3, 0, 1])); //2
+console.log(missingNumberSimple([0, 1])); //2
+console.log(missingNumberSimple([9, 6, 4, 2, 3, 5, 7, 0, 1])); //8
