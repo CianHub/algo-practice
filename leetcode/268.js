@@ -13,7 +13,7 @@ All the numbers of nums are unique.
 Follow up: Could you implement a solution using only O(1) extra space complexity and O(n) runtime complexity?
 */
 
-function missingNumber(nums) {
+function missingNumberQuickSort(nums) {
   // quick sort
   // iterate over sorted array make sure index matches each val and last val === arr.length
 
@@ -49,15 +49,48 @@ function missingNumber(nums) {
     return arr;
   }
 
-  let sortedNums = quicksort(nums);
+  quicksort(nums);
 
-  for (let i = 0; i < sortedNums.length; i++) {
-    if (i !== sortedNums[i]) return i;
+  for (let i = 0; i < nums.length; i++) {
+    if (i !== nums[i]) return i;
   }
 
   return nums.length;
 }
 
-console.log(missingNumber([3, 0, 1])); //2
-console.log(missingNumber([0, 1])); //2
-console.log(missingNumber([9, 6, 4, 2, 3, 5, 7, 0, 1])); //8
+function missingNumberHashmap(nums) {
+  let hashmap = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    hashmap[nums[i]] = 1;
+  }
+
+  const keys = Object.keys(hashmap);
+
+  for (let i = 0; i < keys.length; i++) {
+    if (i !== +keys[i]) return i;
+  }
+
+  return nums.length;
+}
+
+function missingNumberSet(nums) {
+  let set = new Set(nums);
+  let range = Array.from(Array(nums.length + 1).keys());
+
+  for (let i = 0; i < range.length; i++) {
+    if (!set.has(range[i])) return range[i];
+  }
+}
+
+console.log(missingNumberQuickSort([3, 0, 1])); //2
+console.log(missingNumberQuickSort([0, 1])); //2
+console.log(missingNumberQuickSort([9, 6, 4, 2, 3, 5, 7, 0, 1])); //8
+
+console.log(missingNumberHashmap([3, 0, 1])); //2
+console.log(missingNumberHashmap([0, 1])); //2
+console.log(missingNumberHashmap([9, 6, 4, 2, 3, 5, 7, 0, 1])); //8
+
+console.log(missingNumberSet([3, 0, 1])); //2
+console.log(missingNumberSet([0, 1])); //2
+console.log(missingNumberSet([9, 6, 4, 2, 3, 5, 7, 0, 1])); //8
