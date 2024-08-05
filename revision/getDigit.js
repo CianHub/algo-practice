@@ -1,7 +1,5 @@
-function getDigit(number, place) {
-  let numberStr = `${number}`;
-
-  return +numberStr[numberStr.length - 1 - place] || 0;
+function getDigit(num, i) {
+  return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
 }
 
 console.log(getDigit(12345, 0));
