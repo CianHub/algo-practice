@@ -17,21 +17,10 @@ function radixSort(nums) {
     return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
   }
 
-  function createBucket(x) {
-    let arr = [];
-
-    for (let i = 0; i < 10; i++) {
-      arr.push([]);
-    }
-
-    return arr;
-  }
-
   let k = mostDigits(nums);
 
   while (k >= 0) {
-    let newNums = [];
-    let bucket = createBucket();
+    let bucket = Array.from({ length: 10 }, () => []);
 
     for (let i = 0; i < nums.length; i++) {
       let currentVal = nums[i];
@@ -40,12 +29,7 @@ function radixSort(nums) {
       bucket[digit].push(currentVal);
     }
 
-    for (let i = 0; i < bucket.length; i++) {
-      let currentSubBucket = bucket[i];
-      newNums = [...newNums, ...currentSubBucket];
-    }
-
-    nums = newNums;
+    nums = [].concat(...bucket);
 
     k--;
   }
