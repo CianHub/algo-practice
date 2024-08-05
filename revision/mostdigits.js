@@ -4,13 +4,11 @@ function digitCount(num) {
 }
 
 function mostDigits(nums) {
-  if (nums.length === 1) return digitCount(nums[0]);
-  let mostDigits = digitCount(nums[0]);
+  let mostDigits = 0;
 
-  for (let i = 1; i < nums.length; i++) {
-    let currentDigitCount = digitCount(nums[i]);
-    if (mostDigits < currentDigitCount) mostDigits = currentDigitCount;
-  }
+  for (let i = 0; i < nums.length; i++)
+    mostDigits = Math.max(mostDigits, digitCount(nums[i]));
+
   return mostDigits;
 }
 
