@@ -91,4 +91,19 @@ class DoublyLinkedList {
 
     return currentNode;
   }
+
+  set(index, value) {
+    if (index + 1 > this.length) return false;
+
+    let currentNode = this.head;
+
+    while (index > 0) {
+      currentNode = currentNode.next;
+      index--;
+    }
+
+    currentNode.val = value;
+
+    return true;
+  }
 }
