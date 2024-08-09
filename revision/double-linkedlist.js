@@ -120,9 +120,6 @@ class DoublyLinkedList {
     const prev = currentNode.prev;
     const next = currentNode.next;
 
-    if (index === 0) this.head = next;
-    if (index === this.length - 1) this.tail = prev;
-
     prev.next = next;
     next.prev = prev;
     this.length--;
