@@ -109,6 +109,8 @@ class DoublyLinkedList {
 
   remove(index) {
     if (index + 1 > this.length) return undefined;
+    else if (index + 1 === this.length) return this.pop();
+    else if (index === 0) return this.shift();
 
     let currentNode = this.head;
 
