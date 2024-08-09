@@ -95,13 +95,7 @@ class DoublyLinkedList {
   set(index, value) {
     if (index + 1 > this.length) return false;
 
-    let currentNode = this.head;
-
-    while (index > 0) {
-      currentNode = currentNode.next;
-      index--;
-    }
-
+    let currentNode = this.get(index);
     currentNode.val = value;
 
     return true;
@@ -112,12 +106,7 @@ class DoublyLinkedList {
     else if (index + 1 === this.length) return this.pop();
     else if (index === 0) return this.shift();
 
-    let currentNode = this.head;
-
-    while (index > 0) {
-      currentNode = currentNode.next;
-      index--;
-    }
+    let currentNode = this.get(index);
 
     const prev = currentNode.prev;
     const next = currentNode.next;
@@ -136,12 +125,7 @@ class DoublyLinkedList {
 
     const newNode = new Node(value);
 
-    let currentNode = this.head;
-
-    while (index > 0) {
-      currentNode = currentNode.next;
-      index--;
-    }
+    let currentNode = this.get(index);
 
     const prev = currentNode.prev;
 
